@@ -48,8 +48,8 @@ function newsfeed() {
   if (portal) {
     portal.style.cursor = 'pointer';
     portal.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent default link behavior (if any)
-      window.location.href = 'https://my.marist.edu/'; // Redirect
+      e.preventDefault(); 
+      window.location.href = 'https://my.marist.edu/';
     });
   }
 });

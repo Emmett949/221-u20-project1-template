@@ -1,14 +1,20 @@
-const express = require('express')
+const express = require('express');
 const app = express();
-app.use(express.static('client/public'));
 
-app.get('/', function(req, res) {
-    res.sendFile('index.html', {root: './client/views'})
-})
-app.get('/feed', function(req, res) {
-    res.sendFile('feed.html', {root: './client/views'})
-})
+const ctrl = require('./controller/feedController');
 
+app.use(express.json());
 
+app.route('/api/feed')
+   .get(ctrl.getAll)
+   .post(ctrl.create);
 
-app.listen(1337, () => console.log('Listening on port 1337.'))
+app.route('/api/feed/:id')
+   .get(ctrl.getById)
+   .patch(ctrl.updateById)
+   .delete(ctrl.deleteById);
+
+const PORT = 1337;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
